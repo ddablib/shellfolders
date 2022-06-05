@@ -1,436 +1,139 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
- * Read-me file for Shell Folders Unit Demo ReadMe
- *
- * Any copyright in this file is dedicated to the Public Domain.
- * http://creativecommons.org/publicdomain/zero/1.0/
--->
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+# Shell Folders Unit Demo
 
-<head>
+## Introduction
 
-  <title>
-    DelphiDabbler.com Shell Folders Demo ReadMe
-  </title>
+This project is provided with the DelphiDabbler _Shell Folders Unit_ to demonstrate how to use some of the code in the unit.
 
-  <style type="text/css">
-    body {
-      margin: 1em;
-      padding: 0;
-      font-family: Verdana, Arial, sans-serif;
-      font-size: 9pt;
-      line-height: 150%;
-    }
-    h1 {
-      margin: 0 0 1em 0;
-      padding: 0.5em;
-      border: 1px silver solid;
-      background-color: #eee;
-      font-size: 13pt;
-      font-weight: bold;
-      text-align: center;
-    }
-    h1 .subtitle {
-      font-style: italic;
-      color: #336;
-    }
-    h2 {
-      margin: 1em 0 0 0;
-      padding: 0;
-      padding-bottom: 6px;
-      border-bottom: 1px silver solid;
-      font-size: 11pt;
-      font-weight: bold;
-    }
-    h3 {
-      margin: 0.5em 0 0 0;
-      padding: 0;
-      font-size: 9pt;
-      font-weight: bold;
-    }
-    p {
-      margin: 0.5em 0 0 0;
-      padding: 0;
-    }
-    ul, ol {
-      margin: 0.5em 0 0 3em;
-      padding: 0;
-    }
-    ul {
-      list-style-type: square;
-    }
-    ul.spaced li,
-    ol.spaced li {
-      margin-top: 0.5em;
-    }
-    ul.spaced li,
-    ol.spaced li {
-      margin-top: 0.5em;
-    }
-    ul.unspaced li,
-    ol.unspaced li {
-      margin-top: 0;
-    }
-    ul.unspaced li.first,
-    ol.unspaced li.first {
-      margin-top: 0.5em;
-    }
-    code {
-      font-family: "Courier New", Courier, monospace;
-    }
-    a:link {
-      color: #336;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #669;
-      text-decoration: underline;
-    }
-    a:active {
-      color: #336;
-      text-decoration: underline;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .gototop {
-      margin: 1em 0 0 0;
-      padding: 0.3em 0 0 0;
-      text-align: center;
-      position: relative;
-      float: right;
-      font-weight: bold;
-    }
-    .pullout {
-      border-left: 8px silver solid;
-      background-color: #eee;
-      margin: 0.5em 0 0 0;
-      padding: 0.25em 0.5em;
-      font-style: italic;
-    }
-    .indent {
-      margin-left: 3em;
-    }
-    .highlight {
-      color: #336;
-      font-style: italic;
-      font-weight: bold;
-    }
-    .endnotes {
-      margin: 1.5em 0 0 0;
-      padding: 1em 0 0 0;
-      border-top: 1px silver solid;
-    }
-    .comments {
-      font-style: italic;
-    }
-    .copyright,
-    .copyright a:link,
-    .copyright a:visited,
-    .copyright a:active {
-      margin: 1em 0 0 0;
-      color: gray;
-      font-size: 8pt;
-      text-align: right;
-    }
-  </style>
+The project requires Delphi 7 as a minimum and should compile on all later compilers. Both 32 bit and 64 bit Windows targets are supported when compiling with Delphi XE2 or later. The project has been tested with Delphi 7, 2006, 2007, 2009, 2010, XE, XE2, XE3 and XE4.
 
-</head>
+## Installing the Demo Project
 
-<body>
+The demo project is provided in the same zip file as the _Shell Folders Unit_.
 
+***The Shell Folder components must be installed before trying to compile this demo.*** If compiling for a 64 bit Windows target ensure that the components have been built into a 64 bit package.
 
-<h1>
-  Shell Folders Unit<br />
-  <span class="subtitle">Demo Program ReadMe</span>
-</h1>
+Copy the code from the `Demo` sub-folder of the zip file to some suitable location on your hard drive then open the `ShellFolderDemo.dpr` project in Delphi. If the compiler can't find the component's `.dcu` file, place the directory where you installed the components on your compiler's search path.
 
+By default the demo compiles as a 32 bit Windows application. When using Delphi XE2 or later you can compile the project as a 64 bit Windows application simply by using the IDE to add a 64 bit target to the project and recompiling.
 
-<h2>
-  Introduction
-</h2>
+## Overview
 
-<p>
-  This project is provided with the DelphiDabbler <em>Shell Folders Unit</em> to
-  demonstrate how to use some of the code in the unit.
-</p>
+The program exercises much of the main code in `PJShellFolders.pas`. On starting the program displays information about each of the supported special shell folders in the main part of the window. This information is:
 
-<p>
-  The project requires Delphi 7 as a minimum and should compile on all later
-  compilers. Both 32 bit and 64 bit Windows targets are supported when compiling
-  with Delphi XE2 or later. The project has been tested with Delphi 7, 2006,
-  2007, 2009, 2010, XE, XE2, XE3 and XE4.
-</p>
+* ID: the symbolic constant associated with the folder.
 
+* Display name: the display name of the folder (or `<not supported>` if the folder is not supported by the underlying operating system).
 
-<h2>
-  Installing the Demo Project
-</h2>
+* Folder path: the path to the folder in the file system. If the folder is not part of the physical file system, i.e. is virtual, then `<virtual folder>` is displayed. No entry is present for unsupported folders.
 
-<p>
-  The demo project is provided in the same zip file as the <em>Shell Folders
-  Unit</em>.
-</p>
+Below the main display are several controls:
 
-<p>
-  The Shell Folder components must be installed before trying to compile this
-  demo. If compiling for a 64 bit Windows target ensure that the components have
-  been built into a 64 bit package.
-</p>
+* _Browse selected folder_ button
 
-<p>
-  Copy the code from the <code>Demo</code> sub-folder of the zip file to some
-  suitable location on your hard drive then open the
-  <code>ShellFolderDemo.dpr</code> project in Delphi. If the compiler can't find
-  the component's .dcu file place the directory where you installed the
-  components on your compiler's search path.
-</p>
+  Clicking this button displays the _Browse for Folder_ dialogue box with the selected special folder as the root in the display. Click the button to experiment with the dialogue, the behaviour of which changes according to the state of other controls. If the selected folder is not supported by the operating system then the button is disabled. The dialogue can also be displayed by double clicking the folder's entry in the display.
 
-<p>
-  By default the demo compiles as a 32 bit Windows application. When using
-  Delphi XE2 or later you can compile the project as a 64 bit Windows
-  application simply by using the IDE to add a 64 bit target to the project and
-  recompiling.
-</p>
+* _Dialog Box Options_ group box
 
+  This group box contains check boxes that enable and disable associated options in the browse dialogue box's _Options_ properties, as follows:
 
-<h2>
-  Overview
-</h2>
+  * _Show Help_
 
-<p>
-  The program exercises much of the main code in
-  <code>PJShellFolders.pas</code>. On starting the program displays information
-  about each of the supported special shell folders in the main part of the
-  window. This information is:
-</p>
+    Displays a help button in the dialogue box. The button will be disabled because no help context is assigned to the dialogue box – assigning a non-zero help context would enable the button.
 
-<ul class="spaced">
-  <li>
-    ID: the symbolic constant associated with the folder.
-  </li>
-  <li>
-    Display name: the display name of the folder (or &lt;not supported&gt; if
-    the folder is not supported by the underlying operating system).
-  </li>
-  <li>
-    Folder path: the path to the folder in the file system. If the folder is not
-    part of the physical file system, i.e. is virtual, then &lt;virtual
-    folder&gt; is displayed. No entry is present for unsupported folders.
-  </li>
-</ul>
+    > **Note:** No help button is displayed if _New Style Dialog_ is checked.
 
-<p>
-  Below the main display are several controls:
-</p>
+  * _Context Help_
 
-<ul class="spaced">
-  <li>
-    <em>Browse selected folder</em> button:<br />
-    Clicking this button displays the <em>Browse for Folder</em> dialogue box
-    with the selected special folder as the root in the display. Click the
-    button to experiment with the dialogue, the behaviour of which changes
-    according to the state of other control. If the selected folder is not
-    supported by the operating system the button is disabled. The dialogue can
-    also be displayed by double clicking the folder's entry in the display.
-  </li>
-  <li>
-    <em>Dialog Box Options</em> group box:<br />
-    This group box contains check boxes that enable and disable associated
-    options in the browse dialogue box's <var>Options</var> properties, as
-    follows:
-    <ul>
-      <li>
-        <em>Show Help</em>:<br />
-        Displays a help button in the dialogue box. The button will be disabled
-        because no help context is assigned to the dialogue box &ndash;
-        assigning a non-zero help context would enable the button. No help
-        button is displayed if <em>New Style Dialog</em> is checked.
-      </li>
-      <li>
-        <em>Context Help</em>:<br />
-        Displays a &quot;<strong>?</strong>&quot; button in the dialogue box
-        title and enables context sensitive help. <strong>Note:</strong> this
-        only works on some operating systems.
-      </li>
-      <li>
-        <em>Status Text</em>:<br />
-        Displays status text in the dialogue box. The status text is set in the
-        demo's <var>OnSelChange</var> and <var>OnSelChangeEx</var> event
-        handlers. Status text is not displayed if <em>New Style Dialog</em> is
-        checked.
-      </li>
-      <li>
-        <em>Directories Only</em>:<br />
-        Displays only folders from the file system in the dialogue box. Virtual
-        folders are not displayed.
-      </li>
-      <li>
-        <em>New Style Dialog</em>:<br />
-        Displays the dialogue in the new style. It is resizeable and displays a
-        <em>Make New Folder</em> button by default.
-      </li>
-      <li>
-        <em>Hide &quot;Make Folder&quot; Button</em>:<br />
-        Hides the <em>Make New Folder</em> button that appears by default on the
-        new style dialogue. This option is ignored if <em>New Style Dialog</em>
-        is not checked.
-      </li>
-      <li>
-        <em>Display Edit Box</em><br />
-        Displays an edit control in the dialogue box. Enter a path in this
-        control. A valid path will be used as the selected folder when the
-        dialogue box is closed. If the entered path is not valid it will be
-        ignored and the <var>OnValidationFailed</var> event will be triggered,
-        if assigned.
-      </li>
-      <li>
-        <em>Display Usage Hint</em><br />
-        Causes a usage hint to appear in the dialogue box when checked.
-        <em>New Style Dialog</em> must be checked and <em>Display Edit Box</em>
-        must be cleared for this to take effect. Furthermore
-        <code>shlobj.dll</code> v6.0 or later is also required for this option
-        to take effect.
-      </li>
-    </ul>
-  </li>
-  <li>
-    <em>Bold Headline Text</em> check box:<br />
-    When checked the <em>Browse for folder</em> dialogue box will display its
-    headline text in bold, using the main form's font. This customisation is
-    carried out in the demo program's <var>OnInitialize</var> event handler.
-  </li>
-  <li>
-    <em>Use OnSelChange</em> radio button:<br />
-    When this button is checked the browse dialogue box component uses the
-    demo's <var>OnSelChange</var> event handler when the selected folder
-    changes. The event handler displays the name of the selected folder in the
-    dialogue's status text and ensures the <em>OK</em> button is always enabled.
-    This event handler does not display status text when <em>New Style
-    Dialog</em> check box is checked since the new style dialogue box does not
-    support status text.
-  </li>
-  <li>
-    <em>Use OnSelChangeEx</em> radio button:<br />
-    When this button is checked the browse dialogue box component uses the
-    demo's <var>OnSelChangeEx</var> event handler when the selected folder
-    changes. The event handler sets the dialogue's status text to indicate the
-    name of the selected folder, along with information about whether the folder
-    is virtual. The path to the folder and its small and large icons are
-    displayed in the main window. This event handler does not display status
-    text when the <em>New Style Dialog</em> check box is checked.
-  </li>
-  <li>
-    <em>Use OnValidationFailed</em> check box:<br />
-    When this check box is checked the browse dialogue component uses the demo's
-    <em>OnValidationFailed</em> event handler when an invalid path is entered in
-    any edit control in the dialogue box. The invalid path is displayed and the
-    user is asked to decide whether the dialogue box is closed.
-  </li>
-</ul>
+    Displays a "**?**" button in the dialogue box title and enables context sensitive help.
 
-<h2>
-  Source Code
-</h2>
+    > **Note:** this only works on some versions of Windows.
 
-<p>
-  The main purpose of this demo is to provide source code that shows how to use
-  the various classes and components from the <code>PJShellFolders</code> unit.
-  The code of <code>ShellFolderDemoForm.pas</code> illustrates the following:
-</p>
+  * _Status Text_
 
-<ul class="spaced">
-  <li>
-    The <var>DisplaySpecialFolders</var> method (called from
-    <var>FormCreate</var>) uses the <var>IPJSpecialFolderEnum</var> interface,
-    implemented by the <var>TPJSpecialFolderEnum</var> class, to display details
-    of all supported folders in the main window. The code uses the
-    <var>TPJSpecialFolderInfo</var> component to get the information to display.
-  </li>
-  <li>
-    The <var>IsSelectionSupported</var> method uses the
-    <var>TPJSpecialFolderInfo</var> component to test to see if the currently
-    highlighted folder is supported by the operating system.
-  </li>
-  <li>
-    The <var>BrowseButtonClick</var> event handler sets up the
-    <var>TPJBrowseDialog</var> component to display the <em>Browse for
-    Folders</em> dialogue using the selected special folder as its root node.
-    The <var>TPJBrowseDialog.Execute</var> method is called to display the
-    dialogue box. This causes the component's OnInitialise event to fire &ndash;
-    how this is handled is described below.
-  </li>
-  <li>
-    The <var>BrowseDialogInitialise</var> method handles the
-    <var>TPJBrowseDialog.OnInitialise</var> event and makes the dialogue box
-    headline text in bold if the <em>Bold Headline Text</em> check box is
-    checked.
-  </li>
-  <li>
-    As folders are selected in the the browse dialogue either the
-    <var>TPJBrowseDialog.OnSelChange</var> or
-    <var>TPJBrowseDialog.OnSelChangeEx</var> events are handled by the
-    <var>BrowseDlgSelChange</var> or <var>BrowseDlgSelChangeEx</var> methods
-    respectively, according to the state of the <em>Use OnSelChange</em> and
-    <em>Use OnSelChangeEx</em> radio buttons. These event handlers perform as
-    follows:
-    <ul class="spaced">
-      <li>
-        <var>BrowseDlgSelChange</var>: This event handler simply displays the
-        selected folder's display name in the dialogue's status text and ensures
-        the dialogue's <em>OK</em> button is always enabled. Status text is
-        ignored if the dialogue box has the new style.
-      </li>
-      <li>
-        <var>BrowseDlgSelChangeEx</var>: This event handler gets the display
-        name and path from the PIDL passed to the handler and displays folder
-        information in the dialogue's status text. It then gets the handle of
-        the small and large icons associated with the folder, along with the
-        folder's path and displays them in the main form. Status text is ignored
-        if the dialogue has the new style.
-      </li>
-    </ul>
-  </li>
-  <li>
-    The <var>BrowseDlgValidationFailed</var> event handler handles any
-    <var>TPJBrowseDialog.OnValidationFailed</var> events if the <em>Use
-    OnValidationFailed</em> check box is checked. It reports the name of the
-    invalid folder entered into the browse dialogue's edit control then asks the
-    user if the dialogue box is to be closed. The <em>Display Edit Box</em>
-    option check boxes must be checked to include the required edit control in
-    the dialogue box.
-  </li>
-  <li>
-    When the browse dialogue is closed, the <var>TPJBrowseDialog.OnClose</var>
-    event is triggered and handled by the <var>BrowseDlgClose</var> event
-    handler. This simply ensures that any icons and path displayed in the main
-    window are cleared.
-  </li>
-</ul>
+    Displays status text in the dialogue box. The status text is set in the demo's _OnSelChange_ and _OnSelChangeEx_ event handlers.
 
-<p>
-  You should run the program and examine the source code to get an idea about
-  how to use the <code>PJShellFolders</code> unit.
-</p>
+    > **Note:** Status text is not displayed if _New Style Dialog_ is checked.
 
+  * _Directories Only_
 
-<div class="endnotes">
-  <div class="comments">
-    Please <a
-      href="http://www.delphidabbler.com/contact"
-    >let me know</a> if you have any comments about the component, but please
-    use the <a
-      href="http://www.delphidabbler.com/url/ddlib-issues"
-    >Issue Tracker</a> to report bugs and request new features.
-  </div>
-  <div class="copyright">
-    This document is copyright &copy; 2005-2013, P D Johnson, <a
-      href="http://www.delphidabbler.com/"
-    >www.delphidabbler.com</a>
-  </div>
-</div>
+    Displays only folders from the file system in the dialogue box. Virtual folders are not displayed.
 
-</body>
+  * _New Style Dialog_
 
-</html>
+    Displays the dialogue in the new style. It is resizeable and displays a _Make New Folder_ button by default.
+
+  * _Hide "Make Folder" Button_
+
+    Hides the _Make New Folder_ button that appears by default on the new style dialogue.
+
+    > **Note:** This option is ignored if _New Style Dialog_ is not checked.
+
+  * _Display Edit Box_
+
+    Displays an edit control in the dialogue box. Enter a path in this control. A valid path will be used as the selected folder when the dialogue box is closed.
+
+    > If the entered path is not valid it will be ignored and the _OnValidationFailed_ event will be triggered, if assigned.
+
+  * _Display Usage Hint_
+
+    Causes a usage hint to appear in the dialogue box when checked.
+
+    > _New Style Dialog_ must be checked and _Display Edit Box_ must be cleared for this to take effect. Furthermore `shlobj.dll` v6.0 or later is also required for this option to take effect.
+
+* _Bold Headline Text_ check box
+
+  When checked, the _Browse for folder_ dialogue box will display its headline text in bold, using the main form's font. This customisation is carried out in the demo program's _OnInitialize_ event handler.
+
+* _Use OnSelChange_ radio button
+
+  When this button is checked the browse dialogue box component uses the demo's _OnSelChange_ event handler when the selected folder changes. The event handler displays the name of the selected folder in the dialogue's status text and ensures the _OK_ button is always enabled.
+
+  > This event handler does not display status text when _New Style Dialog_ check box is checked since the new style dialogue box does not support status text.
+
+* _Use OnSelChangeEx_ radio button
+
+  When this button is checked the browse dialogue box component uses the demo's _OnSelChangeEx_ event handler when the selected folder changes. The event handler sets the dialogue's status text to indicate the name of the selected folder, along with information about whether the folder is virtual. The path to the folder and its small and large icons are displayed in the main window.
+
+  > This event handler does not display status text when the _New Style Dialog_ check box is checked.
+
+* _Use OnValidationFailed_ check box
+
+  When this check box is checked the browse dialogue component uses the demo's _OnValidationFailed_ event handler when an invalid path is entered in any edit control in the dialogue box. The invalid path is displayed and the user is asked to decide whether the dialogue box is closed.
+
+## Source Code
+
+The main purpose of this demo is to provide source code that shows how to use the various classes and components from the `PJShellFolders` unit. The code of `ShellFolderDemoForm.pas` illustrates the following:
+
+* The _DisplaySpecialFolders_ method (called from _FormCreate_) uses the _IPJSpecialFolderEnum_ interface, implemented by the _TPJSpecialFolderEnum_ class, to display details of all supported folders in the main window. The code uses the _TPJSpecialFolderInfo_ component to get the information to display.
+
+* The _IsSelectionSupported_ method uses the _TPJSpecialFolderInfo_ component to test to see if the currently highlighted folder is supported by the operating system.
+
+* The _BrowseButtonClick_ event handler sets up the _TPJBrowseDialog_ component to display the _Browse for Folders_ dialogue box, using the selected special folder as its root node. The _TPJBrowseDialog.Execute_ method is called to display the dialogue box. This causes the component's _OnInitialise_ event to fire – how this is handled is described below.
+
+* The _BrowseDialogInitialise_ method handles the _TPJBrowseDialog.OnInitialise_ event and makes the dialogue box headline text in bold if the _Bold Headline Text_ check box is checked.
+
+* As folders are selected in the the browse dialogue either the _TPJBrowseDialog.OnSelChange_ or _TPJBrowseDialog.OnSelChangeEx_ events are handled by the _BrowseDlgSelChange_ or _BrowseDlgSelChangeEx_ methods respectively, according to the state of the _Use OnSelChange_ and _Use OnSelChangeEx_ radio buttons. These event handlers perform as follows:
+
+  * _BrowseDlgSelChange_: This event handler simply displays the selected folder's display name in the dialogue's status text and ensures the dialogue's _OK_ button is always enabled.
+
+    > Status text is ignored if the dialogue box has the new style.
+
+  * _BrowseDlgSelChangeEx_: This event handler gets the display name and path from the PIDL passed to the handler and displays folder information in the dialogue's status text. It then gets the handle of the small and large icons associated with the folder, along with the folder's path and displays them in the main form.
+
+    > Status text is ignored if the dialogue has the new style.
+
+* The _BrowseDlgValidationFailed_ event handler handles any _TPJBrowseDialog.OnValidationFailed_ events if the _Use OnValidationFailed_ check box is checked. It reports the name of the invalid folder entered into the browse dialogue's edit control then asks the user if the dialogue box is to be closed.
+
+  > The _Display Edit Box_ option check boxes must be checked to include the required edit control in the dialogue box.
+
+* When the browse dialogue is closed, the _TPJBrowseDialog.OnClose_ event is triggered and handled by the _BrowseDlgClose_ event handler. This simply ensures that any icons and path displayed in the main window are cleared.
+
+You should run the program and examine the source code to get an idea about how to use the `PJShellFolders` unit.
+
+## Bugs
+
+If you find any bugs in the demo or the _Shell Folders Unit_ please report them using the [Issue Tracker](https://github.com/ddablib/shellfolders/issues). A GitHub account is required.
+
+----
+
+This document is copyright © 2005-2022, [P D Johnson](https://gravatar.com/delphidabbler).
