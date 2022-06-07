@@ -10,7 +10,7 @@ The project requires Delphi 7 as a minimum and should compile on all later compi
 
 The demo project is provided in the same zip file as the _Shell Folders Unit_.
 
-***The Shell Folder components must be installed before trying to compile this demo.*** If compiling for a 64 bit Windows target ensure that the components have been built into a 64 bit package.
+**_The Shell Folder components must be installed before trying to compile this demo._** If compiling for a 64 bit Windows target ensure that the components have been built into a 64 bit package.
 
 Copy the code from the `Demo` sub-folder of the zip file to some suitable location on your hard drive then open the `ShellFolderDemo.dpr` project in Delphi. If the compiler can't find the component's `.dcu` file, place the directory where you installed the components on your compiler's search path.
 
