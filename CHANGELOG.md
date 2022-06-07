@@ -10,7 +10,7 @@
 ## v2.3.1 of 05 November 2013
 
 + Modified components to compile and function correctly with 64 bit Delphi compilers.
-+ Changed type of TPJBrowseDialog.Handle property from THandle to HWND.
++ Changed type of _TPJBrowseDialog.Handle_ property from _THandle_ to _HWND_.
 + Unit names in all Pascal source files are now qualified with their name-spaces on Delphi XE2 and later.
 + Changes to avoid use of a deprecated Windows API function on later versions of Windows.
 + Changes to demo projects:
@@ -29,15 +29,17 @@
 
 ## v2.3 of 29 January 2010
 
-+ Changes to TPJBrowseDialog:
++ Changes to _TPJBrowseDialog_:
   + New display options for hiding "make new folder" button, displaying UA hints and including edit box to use to enter folder names.
-  + New events: OnValidationFailed, for when entry in edit box is not valid and OnHelp triggered when help requested to provide custom help handling.
-  + New HelpType and HelpKeywords properties (compiled in for Delphi 6 and later only).
-  + Modified dialogue initialisation to ensure OnSelectChangeXXX events triggered for default selection.
-+ Updated demo program to demonstrate new options and and OnValidationFailed event.
-+ Improved checks for valid special folder IDs to allow for use of CSIDL_FLAG_CREATE mask.
+  + New events:
+    + _OnValidationFailed_, for when entry in edit box is not valid and
+    + _OnHelp_ triggered when help requested to provide custom help handling.
+  + New _HelpType_ and _HelpKeywords_ properties (compiled in for Delphi 6 and later only).
+  + Modified dialogue initialisation to ensure _OnSelectChangeXXX_ events triggered for default selection.
++ Updated demo program to demonstrate new options and _OnValidationFailed_ event.
++ Improved checks for valid special folder IDs to allow for use of _CSIDL_FLAG_CREATE_ mask.
 + Re-factored code that frees PIDLs
-+ Added new CSIDL_FLAG_XXX and BIF_XXX constants.
++ Added new _CSIDL_FLAG_XXX_ and _BIF_XXX_ constants.
 + Updated help file and other documentation.
 
 ## v2.2.5 of 27 January 2010
@@ -51,21 +53,21 @@
 
 ## v2.2.4 of 03 July 2007
 
-+ Removed CSIDL_XXX constants that were provisionally slated for Windows Vista but were removed from MSDN documentation.
-+ Changed tests for valid folder ids to ignore any CSIDL_FLAG_XXX values that may have been included with the folder id.
-+ Added various additional CSIDL_FLAG_XXX constants.
-+ Changed TPJBrowseDialog.Options property to permit any combination of values. Certain options are now ignored when used in combination with others.
-+ Added TPJBrowseDlgOption enumeration that provides basis of TPJBrowseDlgOptions set. Previously enumeration was defined in set declaration.
++ Removed _CSIDL_XXX_ constants that were provisionally slated for Windows Vista but were removed from MSDN documentation.
++ Changed tests for valid folder ids to ignore any _CSIDL_FLAG_XXX_ values that may have been included with the folder id.
++ Added various additional _CSIDL_FLAG_XXX_ constants.
++ Changed _TPJBrowseDialog.Options_ property to permit any combination of values. Certain options are now ignored when used in combination with others.
++ Added _TPJBrowseDlgOption_ enumeration that provides basis of _TPJBrowseDlgOptions_ set. Previously enumeration was defined in set declaration.
 + Changed to always initialise COM regardless of whether code used to display new style browser for folder. Previous code that selectively initialised COM was buggy.
 + Re-factored some duplicated code.
 + Fixed code that enables / disables browser dialogue box OK button to work with new style dialogue.
 + Made help button caption able to be localised.
-+ Updated help file re changes to TPJBrowseDialog.Options property.
++ Updated help file re changes to _TPJBrowseDialog.Options_ property.
 + Updated demo program, simplifying browse dialogue customisation and giving access to all browse dialogue options.
 
 ## v2.2.3 of 12 April 2006
 
-+ Added new CSIDL_XXX special folder and folder creation constants.
++ Added new _CSIDL_XXX_ special folder and folder creation constants.
 
 ## v2.2.2 of 22 December 2005
 
@@ -80,13 +82,13 @@
 ## v2.2 of 22 August 2004
 
 + Added support for new dialogue style enabled via the Options property.
-+ Provided default specifier of 0 for HelpContext property.
++ Provided default specifier of `0` for _HelpContext_ property.
 + Added further special folder identifiers.
-+ Updated help file re new TPJBrowseFolder new dialogue style option and added additional "A" keywords to improve Delphi help integration.
++ Updated help file re new _TPJBrowseFolder_ new dialogue style option and added additional `A` keywords to improve Delphi help integration.
 + Updated text of Help about box.
-+ Added new .als file for integrating with Delphi 6 and 7 OpenHelp system.
++ Added new `.als` file for integrating with Delphi 6 and 7 OpenHelp system.
 + Added code to exercise new style dialogue box to demo program.
-+ Changed to Mozilla public license.
++ Changed to Mozilla public license v1.1.
 
 ## v2.1 of 29 July 2003
 
@@ -97,12 +99,12 @@
 ## v2.0 of 15 June 2003
 
 + Fixed bug that meant that display name wasn't being shown correctly in Win NT OSs.
-+ Added new OnSelChangeEx event to TPJBrowseDialog component that exposes selected folder's PIDL.
-+ Enabled TPJBrowseDialog to display and accept virtual as well as file system folders.
-+ TPJBrowseDialog now displays disabled help button when HelpContext is 0.
++ Added new _OnSelChangeEx_ event to _TPJBrowseDialog_ component that exposes selected folder's PIDL.
++ Enabled _TPJBrowseDialog_ to display and accept virtual as well as file system folders.
++ _TPJBrowseDialog_ now displays disabled help button when _HelpContext_ is 0.
 + Additional shell folder identifiers missing from Delphi 3 are now conditionally placed in interface of unit in Delphi 3.
 + Added new public functions to get folder path and display name from PIDLs.
-+ All errors in components and routines now raise EPJShellFolder exceptions.
++ All errors in components and routines now raise _EPJShellFolder_ exceptions.
 + Property editor and component registration moved to separate design time unit.
 + Help file corrected and updated.
 + Demo program added.
