@@ -39,8 +39,6 @@ The _Shell Folders Unit_, its components and associated property editors, docume
 * **`PJShellFolders.pas`** – classes, routines and component source code.
 * **`PJShellFolders.dcr`** – component palette glyphs.
 * **`PJShellFoldersDsgn.pas`** – property editors and component registration source code.
-* `PJShellFolders.hlp` – component help file that integrates with the Delphi 3-7 OpenHelp system.
-* `PJShellFolders.als` – a-link keyword file for integration with the Delphi 3-7 OpenHelp system.
 * `README.md` – this file.
 * `CHANGELOG.md` – change log.
 * `MPL-2.txt` – the Mozilla Public License v2.0.
@@ -49,10 +47,6 @@ The _Shell Folders Unit_, its components and associated property editors, docume
 In addition to the above files you will find the source code of a [demo project](#demo-program) in the `Demo` sub-directory.
 
 You can now install the components into the Delphi IDE. To do this, the files `PJShellFolders.pas`, `PJShellFolders.dcr` and `PJShellFoldersDsgn.pas` should be added to a design time package. If you need help doing this [see here](https://delphidabbler.com/url/install-comp).
-
-The help file included in the download can only integrate with the IDE in Delphi 3-7 and **_won't work at all on Windows 10 & 11_**. For information on how to do this, see [this article](https://delphidabbler.com/articles/article-15). Users of other versions of Delphi can either use the help file as a stand-alone file (in which case some links won't work) or you can use the _Shell Folders Unit_ [online documentation](https://delphidabbler.com/url/shellfolders-docs).
-
-> **NOTE:** The help file is deprecated and is no longer being updated. The last update was in the v2.3.1 release. Any changes and new features added since then have not been included in the help file. For up to date documentation please refer to the [online documentation](https://delphidabbler.com/url/shellfolders-docs).
 
 ## Demo Program
 
